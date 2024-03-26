@@ -1,0 +1,11 @@
+framework module AliseSDK {
+  umbrella header "AliseSDK.h"
+  export *
+
+  module * { export * }
+}
+
+module AliseSDK.Swift {
+  header "AliseSDK-Swift.h"
+  requires objc
+}

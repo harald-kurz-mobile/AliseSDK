@@ -1,0 +1,217 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AliseSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+@_exported import AliseSDK
+import CoreNFC
+import Foundation
+import GRPC
+import NIO
+import NIOHPACK
+import Swift
+import SwiftProtobuf
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc @_inheritsConvenienceInitializers @objcMembers open class NFCTagManager : ObjectiveC.NSObject {
+  public typealias DidBecomeActive = (AliseSDK.NFCTagManager) -> Swift.Void
+  public typealias DidDetect = (AliseSDK.NFCTagManager, Swift.Result<Swift.String, AliseSDK.NFCError>) -> Swift.Void
+  @objc open var session: CoreNFC.NFCTagReaderSession? {
+    get
+  }
+  open func read(didBecomeActive: AliseSDK.NFCTagManager.DidBecomeActive? = nil, didDetect: @escaping AliseSDK.NFCTagManager.DidDetect)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension AliseSDK.NFCTagManager : CoreNFC.NFCTagReaderSessionDelegate {
+  @objc dynamic public func tagReaderSessionDidBecomeActive(_ session: CoreNFC.NFCTagReaderSession)
+  @objc dynamic public func tagReaderSession(_ session: CoreNFC.NFCTagReaderSession, didInvalidateWithError error: any Swift.Error)
+  public func tagReaderSession(_ session: CoreNFC.NFCTagReaderSession, didDetect tags: [CoreNFC.NFCTag])
+}
+public struct Card_HelloRequest {
+  public var name: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Card_HelloReply {
+  public var message: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Card_CardCommand {
+  public var apdu: Swift.String
+  public var result: AliseSDK.Card_Result {
+    get
+    set
+  }
+  public var hasResult: Swift.Bool {
+    get
+  }
+  public mutating func clearResult()
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Card_CardResponse {
+  public var clientID: Swift.String
+  public var apdu: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Card_Result {
+  public var tickets: [AliseSDK.Card_Ticket]
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Card_Ticket {
+  public var name: Swift.String
+  public var validFrom: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get
+    set
+  }
+  public var hasValidFrom: Swift.Bool {
+    get
+  }
+  public mutating func clearValidFrom()
+  public var validUntil: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get
+    set
+  }
+  public var hasValidUntil: Swift.Bool {
+    get
+  }
+  public mutating func clearValidUntil()
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+extension AliseSDK.Card_HelloRequest : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Card_HelloReply : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Card_CardCommand : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Card_CardResponse : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Card_Result : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Card_Ticket : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Card_HelloRequest : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Card_HelloRequest, rhs: AliseSDK.Card_HelloRequest) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AliseSDK.Card_HelloReply : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Card_HelloReply, rhs: AliseSDK.Card_HelloReply) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AliseSDK.Card_CardCommand : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Card_CardCommand, rhs: AliseSDK.Card_CardCommand) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AliseSDK.Card_CardResponse : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Card_CardResponse, rhs: AliseSDK.Card_CardResponse) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AliseSDK.Card_Result : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Card_Result, rhs: AliseSDK.Card_Result) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AliseSDK.Card_Ticket : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Card_Ticket, rhs: AliseSDK.Card_Ticket) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum NFCError : Swift.Error {
+  case unavailable
+  case notSupported
+  case readOnly
+  case invalidPayloadSize
+  case invalidated(errorDescription: Swift.String)
+}
+public struct Authentication_AuthenticationRequest {
+  public var user: Swift.String
+  public var password: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Authentication_AuthenticationResponse {
+  public var token: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+extension AliseSDK.Authentication_AuthenticationRequest : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Authentication_AuthenticationResponse : @unchecked Swift.Sendable {
+}
+extension AliseSDK.Authentication_AuthenticationRequest : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Authentication_AuthenticationRequest, rhs: AliseSDK.Authentication_AuthenticationRequest) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AliseSDK.Authentication_AuthenticationResponse : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: AliseSDK.Authentication_AuthenticationResponse, rhs: AliseSDK.Authentication_AuthenticationResponse) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class NFCManager : ObjectiveC.NSObject {
+  public typealias DidBecomeActive = (AliseSDK.NFCManager) -> Swift.Void
+  public typealias DidDetect = (AliseSDK.NFCManager, Swift.Result<CoreNFC.NFCNDEFMessage?, AliseSDK.NFCError>) -> Swift.Void
+  @objc open var session: CoreNFC.NFCNDEFReaderSession? {
+    get
+  }
+  open func read(didBecomeActive: AliseSDK.NFCManager.DidBecomeActive? = nil, didDetect: @escaping AliseSDK.NFCManager.DidDetect)
+  open func write(message: CoreNFC.NFCNDEFMessage, didBecomeActive: AliseSDK.NFCManager.DidBecomeActive? = nil, didDetect: @escaping AliseSDK.NFCManager.DidDetect)
+  @objc open func setMessage(_ alertMessage: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension AliseSDK.NFCManager : CoreNFC.NFCNDEFReaderSessionDelegate {
+  @objc dynamic public func readerSession(_ session: CoreNFC.NFCNDEFReaderSession, didInvalidateWithError error: any Swift.Error)
+  @objc dynamic public func readerSessionDidBecomeActive(_ session: CoreNFC.NFCNDEFReaderSession)
+  @objc dynamic public func readerSession(_ session: CoreNFC.NFCNDEFReaderSession, didDetectNDEFs messages: [CoreNFC.NFCNDEFMessage])
+  @objc dynamic public func readerSession(_ session: CoreNFC.NFCNDEFReaderSession, didDetect tags: [any CoreNFC.NFCNDEFTag])
+}
